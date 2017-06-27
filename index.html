@@ -6,22 +6,12 @@
 	<title>苹果官网轮播图</title>
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/jquery-apple-slider.css">
-	<script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?760cb73b0a55b008cbf69206cd7503cd";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
 </head>
 <body>
+<h1 class="title">仿苹果官网轮播插件</h1>
 <h1>
-	仿苹果官网轮播插件（新版）为无限轮播插件，轮播方式为横向滚动（仅支持此方式）<br><br>
-	作者：弦云孤赫(David Yang)&nbsp;&nbsp;&nbsp;&nbsp;联系方式—QQ：314786482<br><br>
-	查看CSS源码：<a target="_blank" href="css/jquery-apple-slider.css">链接</a><br><br>
-	查看JS源码：<a target="_blank" href="js/jquery-apple-slider.min.js">链接</a><br><br>
+	该插件为无限轮播插件，轮播方式为横向滚动（仅支持此方式）<br><br>
+	作者：弦云孤赫(David Yang)<br><br>
 	温馨提示：作者开源不易，希望使用本插件时，能署名作者，感谢支持。<br><br>
 	注意：由于本插件使用了大量CSS3属性，对于低版本浏览器（如ie9以下版本等不支持CSS3属性的浏览器）不兼容。
 </h1>
@@ -78,83 +68,6 @@ Html：
 &lt;/div&gt;	
 	</pre>
 </div>
-<div class="slide_wrapper st02">
-	<div class="gallery_slide_wrapper">
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>iPhone 7</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>
-		</a>
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>Mac Book</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>	
-		</a>
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>Watch</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>
-		</a>
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>Mac Book_02</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>
-		</a>
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>Watch_02</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>
-		</a>
-		<a class="gallery_item garllery" href="javascript:;">
-			<div class="gallery_item_content">
-				<div class="gallery_item_lockup_wrapper">
-					<span>Mac Book_03</span>
-				</div>
-			</div>
-			<div class="gallery_image"></div>	
-		</a>
-	</div>
-</div>
-<div class="code">
-	<pre>
-调用轮播插件：
-Javascript：
-$(".slide_wrapper").AppleSlider({
-	imgItem:'.gallery',  //轮播图容器Class
-	imgNum:6,  //轮播图数量
-	autoplay:false  //是否为自动轮播
-});
-Html：
-&lt;div class="slide_wrapper"&gt;
-	&lt;div class="gallery_slide_wrapper"&gt;
-		&lt;a class="gallery_item garllery" href="javascript:;"&gt;
-			&lt;div class="gallery_item_content"&gt;
-				&lt;div class="gallery_item_lockup_wrapper"&gt;
-					&lt;span&gt;iPhone 7&lt;/span&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div class="gallery_image"&gt;&lt;/div&gt;
-		&lt;/a&gt;
-		...
-	&lt;/div&gt;
-&lt;/div&gt;
-	</pre>
-</div>
 <div class="example">
 	<h2> options参数</h2>
 	<div class="code">
@@ -170,54 +83,34 @@ $("#id").AppleSlider({
 	</div>
 	<table class="options_table">
 		<thead>
-		    <tr>
-		        <th style="width:150px">参数</th>
-		        <th style="width:100px">默认值</th>
-		        <th>说明</th>
-		    </tr>
-	    </thead>
-	    <tbody>
+	    <tr>
+        <th style="width:150px">参数</th>
+        <th style="width:100px">默认值</th>
+        <th>说明</th>
+	    </tr>
+    </thead>
+	  <tbody>
 			<tr>
-                <td>imgItem</td>
-                <td>'gallery_item'</td>
-                <td>轮播内容列表的class</td>
-            </tr>
+        <td>imgItem</td>
+        <td>'gallery_item'</td>
+        <td>轮播内容列表的class</td>
+      </tr>
 			<tr>
-                <td>autoplay</td>
-                <td>true</td>
-                <td>是否为自动轮播</td>
-            </tr>
+        <td>autoplay</td>
+        <td>true</td>
+        <td>是否为自动轮播</td>
+      </tr>
 			<tr>
-                <td>imgNum</td>
-                <td>3</td>
-                <td>轮播图数量，默认值为3，没有最大值限制</td>
-            </tr>
+        <td>imgNum</td>
+        <td>3</td>
+        <td>轮播图数量，默认值为3，没有最大值限制</td>
+      </tr>
 			<tr>
-                <td>autoTime</td>
-                <td>5000</td>
-                <td>自动轮播时间间隔</td>
-            </tr>
-			<tr>
-                <td>_index</td>
-                <td>0</td>
-                <td>当前轮播图绝对序号 (不可更改)</td>
-            </tr>
-			<tr>
-                <td>slide_state</td>
-                <td>0</td>
-                <td>轮播状态值,默认为可执行轮播动画,为1时不能执行轮播动画,每次轮播动画执行完毕前不可连续执行动画 (不可更改)</td>
-            </tr>			
-            <tr>
-                <td>sildeTimer</td>
-                <td>null</td>
-                <td>自动轮播定时器 (不可更改)</td>
-            </tr>
-            <tr>
-                <td>stateTimer</td>
-                <td>null</td>
-                <td>状态值改变定时器 (不可更改)</td>
-            </tr>
-	    </tbody>
+        <td>autoTime</td>
+        <td>5000</td>
+        <td>自动轮播时间间隔</td>
+      </tr>
+	  </tbody>
 	</table>
 </div>
 <script src="js/jquery-1.11.3.js"></script>
@@ -237,12 +130,6 @@ $(function(){
 		imgNum:3,
 		autoplay:true
 	});	
-	//调用轮播插件,传入轮播图数量：6
-	$(".slide_wrapper.st02").AppleSlider({
-		imgItem:'.garllery',
-		imgNum:6,
-		autoplay:false
-	});
 })
 </script>
 </body>
