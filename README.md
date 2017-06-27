@@ -34,8 +34,6 @@ $(".slide_wrapper").AppleSlider({
 ## 个人简介
 作者：弦云孤赫(David Yang)
 
-地址：四川成都
-
 职业：web前端开发工程师
 
 爱好：网游、音乐（吉他）
@@ -44,4 +42,6 @@ $(".slide_wrapper").AppleSlider({
 QQ：314786482
 
 微信：yangyunhe_yyh
+
+坐标：四川成都
 
