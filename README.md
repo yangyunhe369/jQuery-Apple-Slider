@@ -17,14 +17,14 @@ Html：
 		<a class="gallery_item" href="javascript:;">
 			<div class="gallery_item_content">
 				<div class="gallery_item_lockup_wrapper">
-					<span>iPhone 7</span>
+					<span>...</span>
 				</div>
 			</div>
 			<div class="gallery_image"></div>
 		</a>
 		...
 	</div>
-</div>	
+</div>
 Javascript：
 $(".slide_wrapper").AppleSlider({
 	imgItem:'.gallery_item',  //轮播图容器Class
