@@ -10,7 +10,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,iframe,fieldset,input,text
 fieldset,img,button{border:0;}
 body,input,select,textarea{font-family:'微软雅黑 Regular','微软雅黑';color:#333;font-size:12px;}
 
-body{position: relative;background:#fff;min-width:1200px;margin:0 auto;}
+body{position: relative;background:#fff;margin:0 auto;}
 table{border-collapse:collapse;border-spacing:0;}
 a{text-decoration:none;}
 a:hover{text-decoration:none;}
