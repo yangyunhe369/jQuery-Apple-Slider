@@ -37,7 +37,7 @@ Javascript：
 $(".slide_wrapper").AppleSlider({
   imgItem:'.gallery_item',          // 轮播图容器Class
   imgNum:3,                         // 轮播图数量至少为3张
-  autoplay:true                     // 是否为自动轮播
+  autoPlay:true                     // 是否为自动轮播
 });
 ```
 
