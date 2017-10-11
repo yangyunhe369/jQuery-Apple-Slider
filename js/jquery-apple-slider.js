@@ -124,22 +124,22 @@
         // 当为自动轮播时
         if (self._autoPlay) {
           self.autoMove();
+          // 判断当前页面是否可见，不可见时清除自动轮播定时器，可见时添加
+          var hiddenProperty = 'hidden' in document ? 'hidden' :    
+              'webkitHidden' in document ? 'webkitHidden' :    
+              'mozHidden' in document ? 'mozHidden' :    
+              null;
+          var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+          // 监听页面是否可见事件
+          document.addEventListener(visibilityChangeEvent, function () {
+            if (!document[hiddenProperty]) {  // 可见状态
+              // 当为自动轮播时
+              self.autoMove(true);
+            } else { // 不可见状态
+              self.cleanAutoMove();
+            }
+          });
         }
-        // 判断当前页面是否可见，不可见时清除自动轮播定时器，可见时添加
-        var hiddenProperty = 'hidden' in document ? 'hidden' :    
-            'webkitHidden' in document ? 'webkitHidden' :    
-            'mozHidden' in document ? 'mozHidden' :    
-            null;
-        var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-        // 监听页面是否可见事件
-        document.addEventListener(visibilityChangeEvent, function () {
-          if (!document[hiddenProperty]) {  // 可见状态
-            // 当为自动轮播时
-            self.autoMove(true);
-          } else { // 不可见状态
-            self.cleanAutoMove();
-          }
-        });
       },
       moveTo: function (direction,moveTimes) { // 移动事件
         var self = this;
