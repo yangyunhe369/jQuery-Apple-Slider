@@ -15,7 +15,7 @@
 	温馨提示：作者开源不易，希望使用本插件时，能署名作者，感谢支持。<br><br>
 	注意：由于本插件使用了大量CSS3属性，对于低版本浏览器（如ie9以下版本等不支持CSS3属性的浏览器）不兼容。
 </h1>
-<div class="slide_wrapper st01">
+<div class="slide_wrapper">
 	<div class="gallery_slide_wrapper">
 		<a class="gallery_item" href="javascript:;">
 			<div class="gallery_item_content">
@@ -119,13 +119,13 @@ $("#id").AppleSlider({
 <script>
 $(function(){
 	var win_w = $(window).width(),
-		wrapper_h = $('.slide_wrapper').height();
+			wrapper_h = $('.slide_wrapper').height();
 	$(window).resize(function(){
 		win_w = $(window).width();
 		$('.slide_wrapper').height(wrapper_h);
 	})
 	//调用轮播插件,传入轮播图数量：3
-	$(".slide_wrapper.st01").AppleSlider({
+	$(".slide_wrapper").AppleSlider({
 		imgItem:'.gallery_item',
 		imgNum:3,
 		autoplay:true

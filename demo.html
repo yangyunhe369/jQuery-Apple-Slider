@@ -34,6 +34,14 @@
 			</div>
 			<div class="gallery_image"></div>
 		</a>
+		<a class="gallery_item" href="javascript:;">
+			<div class="gallery_item_content">
+				<div class="gallery_item_lockup_wrapper">
+					<span>Mac Book2</span>
+				</div>
+			</div>
+			<div class="gallery_image"></div>
+		</a>
 	</div>
 </div>
 <script src="js/jquery-1.11.3.js"></script>
@@ -47,12 +55,13 @@ $(function(){
 		win_w = $(window).width();
 		$('.slide_wrapper').height(wrapper_h);
 	})
-
-	$(".slide_wrapper").AppleSlider({
-		imgItem:'.gallery_item',
-		imgNum:3,
-		autoplay:true
-	});	
+	$(window).load(function () {
+		$(".slide_wrapper").AppleSlider({
+			imgItem:'.gallery_item',
+			imgNum:4,
+			autoplay:true
+		});	
+	})
 })
 </script>
 </body>

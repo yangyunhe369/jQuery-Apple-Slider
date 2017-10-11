@@ -43,6 +43,12 @@ $(".slide_wrapper").AppleSlider({
 
 ps：如需在移动端进行使用滑动切换图片功能，需引入jquery.touchSwipe.min.js文件
 
+## 项目更新
+
+2017.10.11 — v1.1：重构代码，添加页面不可见状态停止自动轮播，页面可见时启动自动轮播。
+
+ps：这里通过visibilitychange事件监听浏览器标签页面状态变化，简单来说，浏览器标签页被隐藏或显示的时候会触发visibilitychange事件，并利用document.hidden属性来判断页面是否可见，具体操作实现可阅读源码查看。
+
 ## 说明
 
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
