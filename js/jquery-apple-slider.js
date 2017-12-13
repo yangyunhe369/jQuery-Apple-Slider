@@ -3,6 +3,8 @@
 **
 ** 仿苹果轮播图插件——jquery-apple-slider.js
 ** 插件支持图片数量为至少为三张的情况，且可以无限轮播
+** 版本：v1.2
+** 更新日期：2017-12-13
 */
 +function($) {
   $.fn.AppleSlider = function (options) {
@@ -54,8 +56,8 @@
         }
         ul_html = '<ul class="nav">' + li_html +'</ul>';
         self._this.append(ul_html);
-        // 判断浏览设备
-        if (self.win_w <= 640) { // 当为移动设备时
+        // 判断浏览设备是否添加触屏滑动效果
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) { // 当为移动设备时
           // 监听触屏滑动事件
           self._this.swipe({
             swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
@@ -153,10 +155,10 @@
         }
         // 初始化变量
         var i = self._index ,                          // 轮播图的绝对序号
-            idx = self._index % self._imgNum,               // 轮播图的相对序号
+            idx = self._index % self._imgNum,          // 轮播图的相对序号
             warp_w = - self.win_w * i,                 // 最外层容器移动距离
-            st_arr = [],                          // 轮播图系数数组
-            idxW_arr = [];                        // 轮播图移动距离数组
+            st_arr = [],                               // 轮播图系数数组
+            idxW_arr = [];                             // 轮播图移动距离数组
         // 设置轮播图系数，轮播图移动距离
         for(var k = 0;k < self._imgNum;k++){
           if (k == 0) { // 第一张轮博图

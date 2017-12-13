@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<title>苹果官网轮播图</title>
 	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/jquery-apple-slider.css">
+	<link rel="stylesheet" href="css/jquery-apple-slider-mobile.css">
+	<script src="js/flexible.js"></script>
 </head>
 <body>
 <h1 class="title">仿苹果官网轮播插件</h1>
@@ -118,8 +119,8 @@ $("#id").AppleSlider({
 <script src="js/jquery-apple-slider.js" charset="UTF-8"></script>
 <script>
 $(function(){
-	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {	// 移动端设备，跳转至移动端展示页面
-		window.location.href = "mobile.html";
+	if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {	// PC端设备，跳转至PC展示页面
+		window.location.href = "index.html";
 	}
 	var win_w = $(window).width(),
 			wrapper_h = $('.slide_wrapper').height();
@@ -132,7 +133,7 @@ $(function(){
 		imgItem:'.gallery_item',
 		imgNum:3,
 		autoPlay:true
-	});
+	});	
 })
 </script>
 </body>
