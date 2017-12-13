@@ -5,6 +5,8 @@
 
 **demo**：[线上地址](https://yangyunhe369.github.io/jQuery-Apple-Slider/)
 
+**代码详解**：[博客链接](http://www.yangyunhe.me/2017/jquery-appleSlider/)
+
 ps:由于本插件使用了大量CSS3属性，对于低版本浏览器（如ie9以下版本等不支持CSS3属性的浏览器）不兼容；演示页面（`index.html`, `mobile.html`）分别对应PC端、移动端页面效果，移动端可支持触屏滑动翻页，如需在移动端进行使用滑动切换图片功能，需引入`jquery.touchSwipe.min.js`文件。
 
 ## 下载源码
