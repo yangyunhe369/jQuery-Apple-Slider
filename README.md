@@ -15,7 +15,7 @@ ps:由于本插件使用了大量CSS3属性，对于低版本浏览器（如ie9�
 git clone https://github.com/yangyunhe369/jQuery-Apple-Slider.git
 ```
 ## 项目截图
-![cover](images/cover.png)
+![cover](images/cover.gif)
 
 ## 使用方法
 
