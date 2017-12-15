@@ -21,7 +21,7 @@
       _this: $(this),                             // 当前对象
       _imgNum: _options.imgNum,                   // 轮播图数量
       _imgItem: _options.imgItem,                 // 轮播容器class名称
-      _index: 0,                                  // 当前轮播图绝对序号
+      _index: 0,                                  // 当前显示轮播图绝对序号
       _autoPlay: _options.autoPlay,               // 是否自动轮播
       _autoTime: _options.autoTime,               // 自动轮播时间间隔
       sildeTimer: null,                           // 自动轮播定时器
@@ -101,16 +101,8 @@
           if(self.slide_state == 1){
             return;
           }
-          var idx = self._index % self._imgNum,       // 当前轮播图的序号
+          var idx = self.changeIndex(self._index),    // 当前轮播图的相对序号
               li_idx = $(this).index();               // 点击的按钮序号
-          // 当self._index值为负数时转为正数的idx值
-          for(var i = 0;i < self._imgNum;i++){
-            if (idx < 0) {
-              idx = self._imgNum + idx;
-            } else if (idx == 0) {
-              idx = 0;
-            }
-          }
           // 给当前按钮添加class
           $(this).addClass('active').siblings().removeClass('active');
           // 判断当前轮播图移动方向，以及移动次数
@@ -129,25 +121,10 @@
         })
         // 当为自动轮播时
         if (self._autoPlay) {
+          // 开启自动轮播
           self.autoMove();
-          // 判断当前页面是否可见，不可见时清除自动轮播定时器，可见时添加
-          var hiddenProperty = 'hidden' in document ? 'hidden' :    
-              'webkitHidden' in document ? 'webkitHidden' :    
-              'mozHidden' in document ? 'mozHidden' :    
-              null;
-          var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-          // 监听页面是否可见事件
-          document.addEventListener(visibilityChangeEvent, function () {
-            if (!document[hiddenProperty]) {  // 可见状态
-              // 重置导航按钮动画
-              self._this.find('.nav_slide.active').addClass('autoplay');
-              // 开启自动轮播
-              self.autoMove();
-            } else { // 不可见状态
-              // 清除自动轮播定时器
-              self.cleanAutoMove();
-            }
-          });
+          // 页面可见与不可见时相关处理事件
+          self.setPageVisibilityFn();
         }
       },
       moveTo: function (direction,moveTimes) { // 移动事件
@@ -161,30 +138,22 @@
           self._index += moveTimes;
         }
         // 初始化变量
-        var i = self._index ,                          // 轮播图的绝对序号
-            idx = self._index % self._imgNum,          // 轮播图的相对序号
+        var i = self._index ,                          // 当前轮播图的绝对序号
+            idx = self.changeIndex(self._index),       // 当前轮播图的相对序号
             warp_w = - self.win_w * i,                 // 最外层容器移动距离
             st_arr = [],                               // 轮播图系数数组
             idxW_arr = [];                             // 轮播图移动距离数组
         // 设置轮播图系数，轮播图移动距离
         for(var k = 0;k < self._imgNum;k++){
           if (k == 0) { // 第一张轮博图
-            st_arr[k] = Math.floor((i + 1) / self._imgNum);              // 轮播图系数
-            idxW_arr[k] = self.win_w * self._imgNum * st_arr[k];              // 轮播图移动距离
+            st_arr[k] = Math.floor((i + 1) / self._imgNum);                        // 轮播图系数
+            idxW_arr[k] = self.win_w * self._imgNum * st_arr[k];                   // 轮播图移动距离
           } else if (k == self._imgNum - 1) { // 最后一张轮播图
-            st_arr[k] = Math.floor((i - 1) / self._imgNum) + 1;          // 轮播图系数
+            st_arr[k] = Math.floor((i - 1) / self._imgNum) + 1;                    // 轮播图系数
             idxW_arr[k] = - self.win_w + st_arr[k] * self._imgNum * self.win_w;    // 轮播图移动距离
           } else {
             st_arr[k] = Math.floor(i / self._imgNum); // 轮播图系数
             idxW_arr[k] = self.win_w * k + st_arr[k] * self._imgNum * self.win_w;  // 轮播图移动距离
-          }
-        }
-        // 当self._index值为负数时转为正数的idx值
-        for(var j = 0;j < self._imgNum;j++){
-          if (idx < 0) {
-            idx = self._imgNum + idx;
-          } else if (idx == 0) {
-            idx = 0;
           }
         }
         // 控制轮播图移动事件
@@ -266,6 +235,42 @@
         self.stateTimer = setTimeout(function () {
           self.slide_state = 0;
         },700);
+      },
+      setPageVisibilityFn: function () { // 页面可见与不可见时相关处理事件
+        // 判断当前页面是否可见，不可见时清除自动轮播定时器，可见时添加
+        var self = this,
+            hiddenProperty = 'hidden' in document ? 'hidden' :    
+            'webkitHidden' in document ? 'webkitHidden' :    
+            'mozHidden' in document ? 'mozHidden' :    
+            null;
+        var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+        // 监听页面是否可见事件
+        document.addEventListener(visibilityChangeEvent, function () {
+          // 当前轮播图的相对序号
+          var idx = self.changeIndex(self._index);
+          if (!document[hiddenProperty]) {  // 可见状态
+            setTimeout(function() {
+              // 开启自动轮播
+              self.autoMove();
+              // 重置导航按钮动画
+              self._this.find('.nav_slide').eq(idx).addClass('autoplay');
+            }, 200)
+          } else { // 不可见状态
+            // 清除自动轮播定时器
+            self.cleanAutoMove();
+            self._this.find('.nav_slide').eq(idx).removeClass('active');
+          }
+        });
+      },
+      changeIndex: function (i) { // 将绝对序号变为相对序号
+        var self = this,
+            i = i % self._imgNum;
+        if (i < 0) {
+          i = self._imgNum + i;
+        } else if (i == 0) {
+          i = 0;
+        }
+        return i;
       },
       autoMove: function () { // 自动轮播事件
         var self = this;
