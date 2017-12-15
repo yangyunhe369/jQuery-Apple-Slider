@@ -3,8 +3,8 @@
 **
 ** 仿苹果轮播图插件——jquery-apple-slider.js
 ** 插件支持图片数量为至少为三张的情况，且可以无限轮播
-** 版本：v1.2
-** 更新日期：2017-12-13
+** 版本：v1.3
+** 更新日期：2017-12-15
 */
 +function($) {
   $.fn.AppleSlider = function (options) {
@@ -61,6 +61,7 @@
           // 监听触屏滑动事件
           self._this.swipe({
             swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+              // 清除自动轮播定时器
               self.cleanAutoMove();
               if(direction == "left"){ // 向左滑动时
                 if(self.slide_state == 0){
@@ -78,6 +79,7 @@
           self._this.append(btn_html);
           // 向右滚动按钮事件
           self._this.find('.nav_btn.right').on('click',function () {
+            // 清除自动轮播定时器
             self.cleanAutoMove();
             if (self.slide_state == 0) {
               self.moveTo("right",1);
@@ -85,6 +87,7 @@
           })
           // 向左滚动按钮事件
           self._this.find('.nav_btn.left').on('click',function () {
+            // 清除自动轮播定时器
             self.cleanAutoMove();
             if (self.slide_state == 0) {
               self.moveTo("left",1);
@@ -93,6 +96,7 @@
         }
         // 点击导航按钮事件
         self._this.find('.nav li').on('click',function () {
+          // 清除自动轮播定时器
           self.cleanAutoMove();
           if(self.slide_state == 1){
             return;
@@ -135,9 +139,12 @@
           // 监听页面是否可见事件
           document.addEventListener(visibilityChangeEvent, function () {
             if (!document[hiddenProperty]) {  // 可见状态
-              // 当为自动轮播时
-              self.autoMove(true);
+              // 重置导航按钮动画
+              self._this.find('.nav_slide.active').addClass('autoplay');
+              // 开启自动轮播
+              self.autoMove();
             } else { // 不可见状态
+              // 清除自动轮播定时器
               self.cleanAutoMove();
             }
           });
@@ -260,23 +267,15 @@
           self.slide_state = 0;
         },700);
       },
-      autoMove: function (isNowMove) { // 自动轮播事件
-        var self = this,
-            isNowMove = isNowMove || false;
+      autoMove: function () { // 自动轮播事件
+        var self = this;
         self._autoPlay = true;
-        // 判断是否立即执行轮播事件
-        if (isNowMove) {
+        // 判断是否重新执行导航按钮动画事件
+        self.sildeTimer = setInterval(function () {
           self.moveTo("right",1);
-          self.sildeTimer = setInterval(function () {
-            self.moveTo("right",1);
-          },_options.autoTime);
-        } else {
-          self.sildeTimer = setInterval(function () {
-            self.moveTo("right",1);
-          },_options.autoTime);
-        }
+        },_options.autoTime);
       },
-      cleanAutoMove: function () { // 停止自动轮播事件
+      cleanAutoMove: function () { // 清除自动轮播定时器
         var self = this;
         if (self._autoPlay == false) return false;
         self._autoPlay = false;
